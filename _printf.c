@@ -8,18 +8,17 @@
  */
 int (*get_handler(char c))(va_list args)
 {
-	// TO DO: uncomment these once they are defined
 	specifier_t specifier_map[] = {
 		{'c', handle_char},
-		// {'i', handle_integer},
-		// {'d', handle_decimal},
-		// {'s', handle_string},
+		{'i', handle_integer},
+		{'d', handle_integer},
+		{'s', handle_string},
 		{'%', handle_percent}
 	};
 
 	int j = 0;
 
-	while (j < 1) // TO DO: ensure this matches length of above array
+	while (j < 5)
 	{
 		if (specifier_map[j].spec == c)
 			return specifier_map[j].handler;
@@ -38,23 +37,27 @@ int _printf(const char *format, ...)
 	va_list ap;
 	int (*handler_ptr)(va_list ap);
 	int i;
+	int n;
 
 	va_start(ap, format);
 
 	i = 0;
+	n = 0;
 	while (format[i] != '\0')
 	{
 		if (format[i] == '%')
 		{
 			handler_ptr = get_handler(format[i + 1]);
-			handler_ptr(ap);
+			n += handler_ptr(ap);
 			// increment i to skip the character after '%',
 			// unless it is unknown
 			if (handler_ptr != handle_unknown)
 				i++;
 		} else {
-			_putchar(format[i]);
+			n += _putchar(format[i]);
 		}
 		i++;
 	}
+
+	return (n);
 }

@@ -1,13 +1,15 @@
+#include "main.h"
 #include <stdarg.h>
 
 /**
  * handle_unknown - if character following '%' is unknown,
- * 		we want to skip it without using up any of the va_list
+ * 		we want to print '%' it without using up any of the va_list
  * @args: va_list
- * Return: 1
+ * Return: 0
  */
 int handle_unknown(__attribute__((unused)) va_list args)
 {
-        return 1;
+	_putchar('%');
+        return (1);
 }
 

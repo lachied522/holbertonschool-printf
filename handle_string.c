@@ -14,7 +14,7 @@ int handle_string(va_list args)
 	int n;
 
 	if (s == NULL)
-		return (0);
+		return (handle_string("(null)"));
 
 	i = 0;
 	while (s[i] != '\0')

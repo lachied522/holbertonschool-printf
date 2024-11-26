@@ -19,6 +19,8 @@ int handle_string(va_list args); /* Olivia */
 
 int handle_percent(va_list args); /* Lachie */
 
+int handle_unknown(va_list args); /* Lachie */
+
 int handle_integer(va_list args); /* Jack */
 
 int handle_decimal(va_list args); /* Jack */

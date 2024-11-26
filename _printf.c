@@ -49,8 +49,6 @@ int _printf(const char *format, ...)
 		{
 			handler_ptr = get_handler(format[i + 1]);
 			n += handler_ptr(ap);
-			// increment i to skip the character after '%',
-			// unless it is unknown
 			if (handler_ptr != handle_unknown)
 				i++;
 		} else {

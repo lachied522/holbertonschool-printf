@@ -6,7 +6,7 @@
 /* Struct definition */
 typedef struct specifier
 {
-	char spec;             	/* Format specifier character */
+	char spec; /* Format specifier character */
 	int (*handler)(va_list args); /* Function pointer to handle the specifier */
 } specifier_t;
 

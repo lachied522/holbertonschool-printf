@@ -47,13 +47,13 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			if (format[i + 1] != '\0')
-			{
-				handler_ptr = get_handler(format[i + 1]);
-				n += handler_ptr(ap);
-				if (handler_ptr != handle_unknown)
-					i++;
-			}
+			if (format[i + 1] == '\0')
+				return (-1);
+
+			handler_ptr = get_handler(format[i + 1]);
+			n += handler_ptr(ap);
+			if (handler_ptr != handle_unknown)
+				i++;
 		} else {
 			n += _putchar(format[i]);
 		}

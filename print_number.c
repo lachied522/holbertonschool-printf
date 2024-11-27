@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <limits.h>
 #include "main.h"
 /**
  * print_number - Recursively prints an integer.
@@ -13,10 +14,10 @@ int print_number(int n)
     if (n < 0)
     {
         count += _putchar('-');
-        if (n == -2147483648)
+        if (n == INT_MIN)
         {
             count += _putchar('2');
-            num = 147483648;
+            num = INT_MAX / 10;
         }
         else
         {

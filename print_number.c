@@ -19,7 +19,7 @@ int print_number(int n)
 		{
 			count += _putchar('2');
 			num = INT_MAX / 10;
-	        }
+		}
 		else
 		{
 			num = -n;

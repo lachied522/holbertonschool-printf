@@ -2,8 +2,7 @@
 #include <stdarg.h>
 
 /**
- * handle_unknown - if character following '%' is unknown,
- * 		we want to print '%' it without using up any of the va_list
+ * handle_unknown - print '%' without consuming va_list
  * @args: va_list
  * Return: 0
  */

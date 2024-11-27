@@ -21,15 +21,16 @@ int (*get_handler(char c))(va_list args)
 	while (j < 5)
 	{
 		if (specifier_map[j].spec == c)
-			return specifier_map[j].handler;
+			return (specifier_map[j].handler);
 		j++;
 	}
 
-	return handle_unknown;
-}	
+	return (handle_unknown);
+}
 
 /**
  * _printf - prints format string
+ * @format: char array
  * Return: 0 or 1
  */
 int _printf(const char *format, ...)
@@ -54,7 +55,9 @@ int _printf(const char *format, ...)
 			n += handler_ptr(ap);
 			if (handler_ptr != handle_unknown)
 				i++;
-		} else {
+		}
+		else
+		{
 			n += _putchar(format[i]);
 		}
 		i++;

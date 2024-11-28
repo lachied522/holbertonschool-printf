@@ -1,0 +1,108 @@
+.TH _PRINTF 3 "28 November 2024" "1.0" "_printf man page"
+.SH NAME
+_printf \- formatted output
+
+.SH SYNOPSIS
+.B _printf(const char *format, ...);
+
+.SH DESCRIPTION
+The function writes a formatted string to the standard output
+.I (stdout),
+based on a provided format string (*format) and a variable number of arguments (...).
+
+.sp 1
+The function iterates through the format string one character at a time.
+If a '%' character is encountered, it indicates that a format specifier is coming.
+The `get_handler` function is called to retrieve the appropriate function pointer based on the specifier (the next character).
+Then, the handler function is called to process the argument from the va_list.
+
+.sp 1
+.SS Return Value
+Upon successful return, this function returns the total number of characters printed (excluding the null terminator).
+If an output error is encountered, -1 is returned.
+
+.SH CONVERSION SPECIFIERS
+
+.TP
+.BR %c 
+Handles the printing of a single character to the output via the `handle_char()` function.
+
+.TP
+.BR %i
+Processes and prints an integer value via the `handle_integer()` function.
+
+.TP
+.BR %d
+Processes and prints a decimal number via the `handle_decimal()` function. The integer argument is converted to signed decimal notation.
+
+.TP
+.BR %s
+Handles the printing of a string of characters to the output via the `handle_string()` function.
+
+.TP
+.BR %
+Prints a single percent sign (%) without using up va_list arguments, via the `handle_percent()` function.
+
+.TP
+.BR Default
+Prints a single percent sign (%), when no specifiers are present. without using up va_list arguments via the `handle_unknown()` function.
+
+.SH "FUNCTIONS"
+
+.TP
+.B _printf()
+Interprets a format string and its optional arguments to produce formatted output.
+
+.TP
+.B get_handler()
+A utility function that returns a pointer to a handler function corresponding to a given format specifier.
+
+.TP
+.B _putchar()
+Outputs a single character to the standard output (stdout).
+
+.TP
+.B handle_char()
+Handles the printing of a single character from the va_list argument (`%c`).
+
+.TP
+.B handle_integer()
+Handles the printing of an integer from the va_list argument (`%i`).
+
+.TP
+.B handle_percent()
+Handles the printing of a literal percent sign (%) without consuming va_list arguments.
+
+.TP
+.B print_string()
+Prints a string character by character.
+
+.TP
+.B handle_string()
+Handles the printing of a string from the va_list argument (`%s`).
+
+
+.SH EXAMPLE USAGE
+To print strings:
+
+.sp 1 
+int len = _printf("Let's try to printf a simple sentence.\n")
+
+result -> "Let's try to printf a simple sentence."
+
+.sp 2 
+To print decimals and integers:
+
+.sp 1 
+_printf("Length:[%d, %i]\n", len, len);
+
+result -> "Length:[39, 39]"
+
+.SH BUGS
+No known bugs found
+
+.SH SEE ALSO
+printf(3), write(2)
+
+.SH AUTHOR
+Lachie Duncan, Jack Macdonald, John Nkpolukwu
